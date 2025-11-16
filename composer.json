@@ -3,7 +3,7 @@
   "description": "\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66 All groups related tooling",
   "license": "MIT",
   "require": {
-    "php": "^8.4"
+    "php": "^8.4.14"
   },
   "require-dev": {
     "wyrihaximus/makefiles": "^0.7.12",
