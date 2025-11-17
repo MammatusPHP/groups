@@ -4,3 +4,7 @@ parameters:
 		- ../../etc
 		- ../../src
 		- ../../tests
+	ergebnis:
+		noExtends:
+			classesAllowedToBeExtended:
+			- Mammatus\Http\Server\Generated\AbstractGroups
