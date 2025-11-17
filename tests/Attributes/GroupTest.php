@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Mammatus\Tests\Groups;
+namespace Mammatus\Tests\Groups\Attributes;
 
-use Mammatus\Groups\Group;
+use Mammatus\Groups\Attributes\Group;
 use Mammatus\Groups\Type;
 use PHPUnit\Framework\Attributes\Test;
 use WyriHaximus\TestUtilities\TestCase;

@@ -4,3 +4,8 @@ parameters:
 		- ../../etc
 		- ../../src
 		- ../../tests
+		- ../dev-app
+	ergebnis:
+		noExtends:
+			classesAllowedToBeExtended:
+			- Mammatus\Groups\Generated\AbstractGroups
