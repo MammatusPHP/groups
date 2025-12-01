@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mammatus\Groups\Composer;
 
 use Mammatus\Groups\Type;
+use WyriHaximus\Composer\GenerativePluginTooling\Filter\Class\HasAttributes;
 use WyriHaximus\Composer\GenerativePluginTooling\Filter\Package\ComposerJsonHasItemWithSpecificValue;
 use WyriHaximus\Composer\GenerativePluginTooling\GenerativePlugin;
 use WyriHaximus\Composer\GenerativePluginTooling\Helper\Remove;
@@ -12,6 +13,7 @@ use WyriHaximus\Composer\GenerativePluginTooling\Helper\TwigFile;
 use WyriHaximus\Composer\GenerativePluginTooling\Item as ItemContract;
 use WyriHaximus\Composer\GenerativePluginTooling\LogStages;
 
+use function array_key_exists;
 use function str_increment;
 
 final class Plugin implements GenerativePlugin
@@ -35,7 +37,7 @@ final class Plugin implements GenerativePlugin
     public function filters(): iterable
     {
         yield new ComposerJsonHasItemWithSpecificValue('mammatus.has-groups', true);
-//        yield new HasAttributes(Group::class);
+        yield new HasAttributes(Group::class);
     }
 
     /** @inheritDoc */
@@ -52,11 +54,23 @@ final class Plugin implements GenerativePlugin
 
         foreach ($items as $item) {
             if ($item instanceof Group) {
+                if (! array_key_exists($item->group->name, $groups)) {
+                    $groups[$item->group->name] = [
+                        'handlers' => [],
+                    ];
+                }
+
                 $groups[$item->group->name]['group'] = $item;
             }
 
             if (! ($item instanceof LifeCycleHandler)) {
                 continue;
+            }
+
+            if (! array_key_exists($item->lifeCycleHandler::group(), $groups)) {
+                $groups[$item->lifeCycleHandler::group()] = [
+                    'handlers' => [],
+                ];
             }
 
             $groups[$item->lifeCycleHandler::group()]['handlers'][] = $item;
@@ -71,7 +85,11 @@ final class Plugin implements GenerativePlugin
         );
 
         foreach ($groups as $group) {
-            if ($group['group']->group->type->name === Type::Daemon->name) {
+            if (! array_key_exists('group', $group)) {
+                continue;
+            }
+
+            if ($group['group']->group->type === Type::Daemon) {
                 foreach ($group['handlers'] as $handler) {
                     $daemons[$daemonPropertyName] = $handler;
                 }
