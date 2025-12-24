@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Mammatus\Groups\Composer;
 
+use Mammatus\Groups\Attributes\Group as GroupAttribute;
+use Mammatus\Groups\Contracts\LifeCycleHandler as LifeCycleHandlerContract;
 use Mammatus\Groups\Type;
 use WyriHaximus\Composer\GenerativePluginTooling\Filter\Class\HasAttributes;
+use WyriHaximus\Composer\GenerativePluginTooling\Filter\Class\ImplementsInterface;
+use WyriHaximus\Composer\GenerativePluginTooling\Filter\Operators\LogicalOr;
 use WyriHaximus\Composer\GenerativePluginTooling\Filter\Package\ComposerJsonHasItemWithSpecificValue;
 use WyriHaximus\Composer\GenerativePluginTooling\GenerativePlugin;
 use WyriHaximus\Composer\GenerativePluginTooling\Helper\Remove;
@@ -37,7 +41,10 @@ final class Plugin implements GenerativePlugin
     public function filters(): iterable
     {
         yield new ComposerJsonHasItemWithSpecificValue('mammatus.has-groups', true);
-        yield new HasAttributes(Group::class);
+        yield from LogicalOr::create(
+            new ImplementsInterface(LifeCycleHandlerContract::class),
+            new HasAttributes(GroupAttribute::class),
+        );
     }
 
     /** @inheritDoc */

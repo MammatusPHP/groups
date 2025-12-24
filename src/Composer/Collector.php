@@ -12,11 +12,14 @@ use WyriHaximus\Composer\GenerativePluginTooling\ItemCollector;
 
 use function array_key_exists;
 
+use const PHP_EOL;
+
 final class Collector implements ItemCollector
 {
     /** @return iterable<ItemContract> */
     public function collect(ReflectionClass $class): iterable
     {
+        echo $class->getName(), PHP_EOL;
         $attributes = [];
         foreach (new \ReflectionClass($class->getName())->getAttributes() as $attributeReflection) {
             $attribute                       = $attributeReflection->newInstance();
