@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Mammatus\Groups\Generated;
 
+use Mammatus\DevApp\Groups\LifeIsLife;
 use Mammatus\LifeCycleEvents\Boot;
 use Mammatus\LifeCycleEvents\Shutdown;
 use Mammatus\LifeCycleEvents\Start;
@@ -17,8 +18,9 @@ final class SpawnDaemons implements AsyncListener
 {
     private bool $started = false;
 
-    public function __construct()
-    {
+    public function __construct(
+        private readonly LifeIsLife $a,
+    ) {
     }
 
     public function boot(Boot|Start $event): void
@@ -28,9 +30,11 @@ final class SpawnDaemons implements AsyncListener
         }
 
         $this->started = true;
+        $this->a->start();
     }
 
     public function shutdown(Shutdown $event): void
     {
+        $this->a->stop();
     }
 }
