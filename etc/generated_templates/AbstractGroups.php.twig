@@ -9,8 +9,9 @@ namespace Mammatus\Groups\Generated;
 abstract class AbstractGroups
 {
     /**
+     * @api
      * @return iterable<string, \Mammatus\Groups\Attributes\Group>
-    */
+     */
     final public static function groups(): iterable
     {
         {% for name, group in groups -%}
