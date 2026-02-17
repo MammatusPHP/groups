@@ -10,7 +10,7 @@
     "mammatus/life-cycle-events": "^2.3.0",
     "psr/container": "^1 || ^2 || ^3",
     "psr/log": "^3.0.2",
-    "roave/better-reflection": "^6.66",
+    "roave/better-reflection": "^6.69.0",
     "wyrihaximus/broadcast-contracts": "^1.3.0",
     "wyrihaximus/generative-composer-plugin-tooling": "^1.4.0"
   },
