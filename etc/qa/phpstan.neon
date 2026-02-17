@@ -8,4 +8,7 @@ parameters:
 	ergebnis:
 		noExtends:
 			classesAllowedToBeExtended:
-			- Mammatus\Groups\Generated\AbstractGroups
+				- Mammatus\Groups\Generated\AbstractGroups
+				- ShipMonk\PHPStan\DeadCode\Provider\ReflectionBasedMemberUsageProvider
+includes:
+    - ../../extension.neon

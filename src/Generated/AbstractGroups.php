@@ -16,7 +16,11 @@ use Mammatus\Groups\Type;
  */
 abstract class AbstractGroups
 {
-    /** @return iterable<string, Group> */
+    /**
+     * @return iterable<string, Group>
+     *
+     * @api
+     */
     final public static function groups(): iterable
     {
         yield 'music' => new Group(
