@@ -11,15 +11,14 @@ use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
 use Composer\Script\ScriptEvents;
 use WyriHaximus\Composer\GenerativePluginTooling\GenerativePluginExecutioner;
-
-use const PHP_INT_MIN;
+use WyriHaximus\Composer\GenerativePluginTooling\Helper\Order;
 
 final class Installer implements PluginInterface, EventSubscriberInterface
 {
     /** @return array<string, array<int, int|string>> */
     public static function getSubscribedEvents(): array
     {
-        return [ScriptEvents::PRE_AUTOLOAD_DUMP => ['findGroups', PHP_INT_MIN + 69]];
+        return [ScriptEvents::PRE_AUTOLOAD_DUMP => ['findGroups', Order::LAST]];
     }
 
     public function activate(Composer $composer, IOInterface $io): void
