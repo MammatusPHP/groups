@@ -20,7 +20,7 @@
     "shipmonk/dead-code-detector": "^0.14.1",
     "wyrihaximus/broadcast": "^2.6.1",
     "wyrihaximus/makefiles": "^0.10.4",
-    "wyrihaximus/test-utilities": "^12.1.0"
+    "wyrihaximus/test-utilities": "^12.2.0"
   },
   "suggest": {
     "shipmonk/dead-code-detector": "This package supports ^0.14.1 by hooking in and marking all listeners as alive"
