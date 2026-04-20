@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eedd1c26ad8c230c03ab088abdde99fa",
+    "content-hash": "74a732dc98d3d08a21eafc1adb296d11",
     "packages": [
         {
             "name": "jetbrains/phpstorm-stubs",
@@ -679,16 +679,16 @@
         },
         {
             "name": "wyrihaximus/generative-composer-plugin-tooling",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-generative-composer-plugin-tooling.git",
-                "reference": "3273328358ec3dc938c6620a32f47176bde2aa2c"
+                "reference": "b575b49476310fa484d6b2a1115700be3d5b63b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-generative-composer-plugin-tooling/zipball/3273328358ec3dc938c6620a32f47176bde2aa2c",
-                "reference": "3273328358ec3dc938c6620a32f47176bde2aa2c",
+                "url": "https://api.github.com/repos/WyriHaximus/php-generative-composer-plugin-tooling/zipball/b575b49476310fa484d6b2a1115700be3d5b63b2",
+                "reference": "b575b49476310fa484d6b2a1115700be3d5b63b2",
                 "shasum": ""
             },
             "require": {
@@ -699,8 +699,8 @@
                 "wyrihaximus/simple-twig": "^2.2.1"
             },
             "require-dev": {
-                "wyrihaximus/makefiles": "^0.10.2",
-                "wyrihaximus/test-utilities": "^12.0.0"
+                "wyrihaximus/makefiles": "^0.10.3",
+                "wyrihaximus/test-utilities": "^12.1.0"
             },
             "type": "library",
             "autoload": {
@@ -721,7 +721,7 @@
             "description": "🐦‍🔥 Generative Composer Plugin Tooling",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-generative-composer-plugin-tooling/issues",
-                "source": "https://github.com/WyriHaximus/php-generative-composer-plugin-tooling/tree/1.5.0"
+                "source": "https://github.com/WyriHaximus/php-generative-composer-plugin-tooling/tree/1.6.0"
             },
             "funding": [
                 {
@@ -729,7 +729,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-07T12:20:08+00:00"
+            "time": "2026-04-17T18:55:11+00:00"
         },
         {
             "name": "wyrihaximus/list-classes-in-directory",
