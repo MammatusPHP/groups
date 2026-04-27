@@ -55,6 +55,9 @@ final class Plugin implements GenerativePlugin
 
     public function compile(string $rootPath, ItemContract ...$items): void
     {
+        Remove::file($rootPath . '/src/Groups.php');
+        Remove::file($rootPath . '/src/SpawnDaemons.php');
+
         $groups             = [];
         $daemons            = [];
         $daemonPropertyName = 'a';
@@ -83,11 +86,9 @@ final class Plugin implements GenerativePlugin
             $groups[$item->lifeCycleHandler::group()]['handlers'][] = $item;
         }
 
-        Remove::directoryContents($rootPath . '/src/Generated');
-
         TwigFile::render(
-            $rootPath . '/etc/generated_templates/AbstractGroups.php.twig',
-            $rootPath . '/src/Generated/AbstractGroups.php',
+            $rootPath . '/etc/generated_templates/Groups.php.twig',
+            $rootPath . '/src/Groups.php',
             ['groups' => $groups],
         );
 
@@ -107,7 +108,7 @@ final class Plugin implements GenerativePlugin
 
         TwigFile::render(
             $rootPath . '/etc/generated_templates/SpawnDaemons.php.twig',
-            $rootPath . '/src/Generated/SpawnDaemons.php',
+            $rootPath . '/src/SpawnDaemons.php',
             ['daemons' => $daemons],
         );
     }

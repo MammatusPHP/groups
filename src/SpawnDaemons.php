@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mammatus\Groups\Generated;
+namespace Mammatus\Groups;
 
 use Mammatus\DevApp\Groups\LifeIsLife;
 use Mammatus\LifeCycleEvents\Boot;
