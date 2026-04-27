@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mammatus\Tests\Groups\Generated;
+namespace Mammatus\Tests\Groups;
 
 use ColinODell\PsrTestLogger\TestLogger;
 use Mammatus\DevApp\Groups\LifeIsLife;
-use Mammatus\Groups\Generated\SpawnDaemons;
+use Mammatus\Groups\SpawnDaemons;
 use Mammatus\LifeCycleEvents\Boot;
 use Mammatus\LifeCycleEvents\Shutdown;
 use PHPUnit\Framework\Attributes\Test;
