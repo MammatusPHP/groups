@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5508d9e50f2b9002364b30938fc228a7",
+    "content-hash": "515611b8414429b0d75fd479ef7426ea",
     "packages": [
         {
             "name": "jetbrains/phpstorm-stubs",
@@ -679,16 +679,16 @@
         },
         {
             "name": "wyrihaximus/generative-composer-plugin-tooling",
-            "version": "1.7.0",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-generative-composer-plugin-tooling.git",
-                "reference": "4422ce3e9cdd51b5acbf38ad253893fdd73ad8dd"
+                "reference": "04a9c34b9aa44fb65581835bfa249332bb17f34d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-generative-composer-plugin-tooling/zipball/4422ce3e9cdd51b5acbf38ad253893fdd73ad8dd",
-                "reference": "4422ce3e9cdd51b5acbf38ad253893fdd73ad8dd",
+                "url": "https://api.github.com/repos/WyriHaximus/php-generative-composer-plugin-tooling/zipball/04a9c34b9aa44fb65581835bfa249332bb17f34d",
+                "reference": "04a9c34b9aa44fb65581835bfa249332bb17f34d",
                 "shasum": ""
             },
             "require": {
@@ -721,7 +721,7 @@
             "description": "🐦‍🔥 Generative Composer Plugin Tooling",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-generative-composer-plugin-tooling/issues",
-                "source": "https://github.com/WyriHaximus/php-generative-composer-plugin-tooling/tree/1.7.0"
+                "source": "https://github.com/WyriHaximus/php-generative-composer-plugin-tooling/tree/1.7.1"
             },
             "funding": [
                 {
@@ -729,7 +729,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-05-07T21:13:06+00:00"
+            "time": "2026-05-12T22:11:37+00:00"
         },
         {
             "name": "wyrihaximus/list-classes-in-directory",
