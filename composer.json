@@ -19,7 +19,7 @@
     "pimple/pimple": "^3.6.2",
     "shipmonk/dead-code-detector": "^0.14.1 || ^0.15 || ^1.1.0",
     "wyrihaximus/broadcast": "^2.7.0",
-    "wyrihaximus/makefiles": "^0.11.1",
+    "wyrihaximus/makefiles": "^0.12.0",
     "wyrihaximus/test-utilities": "^13.2.0"
   },
   "suggest": {
