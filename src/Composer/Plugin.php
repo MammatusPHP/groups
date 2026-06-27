@@ -6,6 +6,7 @@ namespace Mammatus\Groups\Composer;
 
 use Mammatus\Groups\Attributes\Group as GroupAttribute;
 use Mammatus\Groups\Contracts\LifeCycleHandler as LifeCycleHandlerContract;
+use Mammatus\Groups\Fallback\DealingWIthLife;
 use Mammatus\Groups\Type;
 use WyriHaximus\Composer\GenerativePluginTooling\Filter\Class\HasAttributes;
 use WyriHaximus\Composer\GenerativePluginTooling\Filter\Class\ImplementsInterface;
@@ -17,7 +18,9 @@ use WyriHaximus\Composer\GenerativePluginTooling\Helper\TwigFile;
 use WyriHaximus\Composer\GenerativePluginTooling\Item as ItemContract;
 use WyriHaximus\Composer\GenerativePluginTooling\LogStages;
 
+use function array_filter;
 use function array_key_exists;
+use function array_unshift;
 use function str_increment;
 
 final class Plugin implements GenerativePlugin
@@ -55,12 +58,39 @@ final class Plugin implements GenerativePlugin
 
     public function compile(string $rootPath, ItemContract ...$items): void
     {
+        $items = array_filter($items, static fn (ItemContract $item): bool => ! ($item instanceof LifeCycleHandler && $item->lifeCycleHandler === DealingWIthLife::class));
+
         Remove::file($rootPath . '/src/Groups.php');
         Remove::file($rootPath . '/src/SpawnDaemons.php');
+        Remove::directoryContentsOnlyIfItExists($rootPath . '/src/Fallback');
 
         $groups             = [];
         $daemons            = [];
         $daemonPropertyName = 'a';
+        $hasNormalGroup     = false;
+
+        foreach ($items as $item) {
+            if (! ($item instanceof Group)) {
+                continue;
+            }
+
+            if ($item->group->type !== Type::Normal) {
+                continue;
+            }
+
+            $hasNormalGroup = true;
+        }
+
+        if (! $hasNormalGroup) {
+            array_unshift($items, new Group(new GroupAttribute(Type::Normal, 'app')));
+            array_unshift($items, new LifeCycleHandler(DealingWIthLife::class));
+
+            TwigFile::render(
+                $rootPath . '/etc/generated_templates/DealingWIthLife.php.twig',
+                $rootPath . '/src/Fallback/DealingWIthLife.php',
+                [],
+            );
+        }
 
         foreach ($items as $item) {
             if ($item instanceof Group) {

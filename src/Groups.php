@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use Mammatus\DevApp\Groups\LifeIsLife;
 use Mammatus\Groups\Attributes\Group;
 use Mammatus\Groups\Contracts\LifeCycleHandler;
+use Mammatus\Groups\Fallback\DealingWIthLife;
 use Mammatus\LifeCycleEvents\Shutdown;
 use Psr\Container\ContainerInterface;
 use WyriHaximus\Broadcast\Contracts\AsyncListener;
@@ -57,6 +58,11 @@ final class Groups implements AsyncListener
      */
     final public static function groups(): iterable
     {
+        yield 'app' => new Group(
+            Type::Normal,
+            'app',
+        );
+
         yield 'music' => new Group(
             Type::Daemon,
             'music',
@@ -69,6 +75,9 @@ final class Groups implements AsyncListener
     private function lifeCycleHandlers(string $group): iterable
     {
         return match ($group) {
+            'app' => [
+                DealingWIthLife::class,
+            ],
             'music' => [
                 LifeIsLife::class,
             ],
