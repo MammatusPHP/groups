@@ -58,6 +58,24 @@ final class Groups implements \WyriHaximus\Broadcast\Contracts\AsyncListener
     }
 
     /**
+     * @param string $group
+     * @return list<string>
+     */
+    public static function lookUpNormalFor(string $group): array
+    {
+        return match ($group) {
+            {% for name, groups in loopUpMap -%}
+                '{{ name }}' => [
+                {% for group in groups -%}
+                    '{{ group }}',
+                {% endfor -%}
+                ],
+            {% endfor -%}
+            default => throw new \InvalidArgumentException('No group found for ' . $group),
+        };
+    }
+
+    /**
      * @return list<class-string<\Mammatus\Groups\Contracts\LifeCycleHandler>>
      */
     private function lifeCycleHandlers(string $group): iterable

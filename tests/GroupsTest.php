@@ -78,4 +78,31 @@ final class GroupsTest extends TestCase
 
         self::assertArrayHasKey('music', $groups);
     }
+
+    #[Test]
+    public function lookUpNormalForApp(): void
+    {
+        $groups = Groups::lookUpNormalFor('app');
+
+        self::assertCount(1, $groups);
+        self::assertSame(['app'], $groups);
+    }
+
+    #[Test]
+    public function lookUpNormalForMusic(): void
+    {
+        $groups = Groups::lookUpNormalFor('music');
+
+        self::assertCount(1, $groups);
+        self::assertSame(['app'], $groups);
+    }
+
+    #[Test]
+    public function lookUpNormalForNonExisting(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage('No group found for non-existing');
+
+        Groups::lookUpNormalFor('non-existing');
+    }
 }
