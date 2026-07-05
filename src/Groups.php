@@ -71,6 +71,16 @@ final class Groups implements AsyncListener
         yield from [];
     }
 
+    /** @return list<string> */
+    public static function lookUpNormalFor(string $group): array
+    {
+        return match ($group) {
+            'app' => ['app'],
+            'music' => ['app'],
+            default => throw new InvalidArgumentException('No group found for ' . $group),
+        };
+    }
+
     /** @return list<class-string<LifeCycleHandler>> */
     private function lifeCycleHandlers(string $group): iterable
     {

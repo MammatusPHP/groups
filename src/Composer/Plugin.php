@@ -20,7 +20,10 @@ use WyriHaximus\Composer\GenerativePluginTooling\LogStages;
 
 use function array_filter;
 use function array_key_exists;
+use function array_unique;
 use function array_unshift;
+use function ksort;
+use function sort;
 use function str_increment;
 
 final class Plugin implements GenerativePlugin
@@ -60,8 +63,8 @@ final class Plugin implements GenerativePlugin
     {
         $items = array_filter($items, static fn (ItemContract $item): bool => ! ($item instanceof LifeCycleHandler && $item->lifeCycleHandler === DealingWIthLife::class));
 
-        Remove::file($rootPath . '/src/Groups.php');
-        Remove::file($rootPath . '/src/SpawnDaemons.php');
+        Remove::fileOnlyIfItExists($rootPath . '/src/Groups.php');
+        Remove::fileOnlyIfItExists($rootPath . '/src/SpawnDaemons.php');
         Remove::directoryContentsOnlyIfItExists($rootPath . '/src/Fallback');
 
         $groups             = [];
@@ -119,7 +122,7 @@ final class Plugin implements GenerativePlugin
         TwigFile::render(
             $rootPath . '/etc/generated_templates/Groups.php.twig',
             $rootPath . '/src/Groups.php',
-            ['groups' => $groups],
+            ['groups' => $groups, 'loopUpMap' => $this->buildLoopUpMap($groups)],
         );
 
         foreach ($groups as $group) {
@@ -141,5 +144,51 @@ final class Plugin implements GenerativePlugin
             $rootPath . '/src/SpawnDaemons.php',
             ['daemons' => $daemons],
         );
+    }
+
+    /**
+     * @param array<array{group?: Group, handlers?: array<LifeCycleHandler>}> $groups
+     *
+     * @return array<string, array<int, string>>
+     */
+    private function buildLoopUpMap(array $groups): array
+    {
+        $loopUpMap = [];
+
+        foreach ($groups as $group) {
+            if (! array_key_exists('group', $group)) {
+                continue;
+            }
+
+            if ($group['group']->group->type !== Type::Daemon) {
+                continue;
+            }
+
+            $loopUpMap[$group['group']->group->name] = [];
+        }
+
+        foreach ($groups as $group) {
+            if (! array_key_exists('group', $group)) {
+                continue;
+            }
+
+            if ($group['group']->group->type !== Type::Normal) {
+                continue;
+            }
+
+            $loopUpMap[$group['group']->group->name] = [$group['group']->group->name];
+            foreach ($loopUpMap as $daemonName => $unUsed) {
+                $loopUpMap[$daemonName][] = $group['group']->group->name;
+            }
+        }
+
+        ksort($loopUpMap);
+
+        foreach ($loopUpMap as $daemonName => $daemons) {
+            $loopUpMap[$daemonName] = array_unique($daemons);
+            sort($loopUpMap[$daemonName]);
+        }
+
+        return $loopUpMap;
     }
 }
