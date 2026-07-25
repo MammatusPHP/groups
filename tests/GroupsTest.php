@@ -22,7 +22,7 @@ final class GroupsTest extends TestCase
     {
         $groupName = md5((string) time());
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('No life cycle handlers found for group ' . $groupName);
+        self::expectExceptionMessageIsOrContains('No life cycle handlers found for group ' . $groupName);
 
         $groups = new Groups(
             new class () implements ContainerInterface {
@@ -101,7 +101,7 @@ final class GroupsTest extends TestCase
     public function lookUpNormalForNonExisting(): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('No group found for non-existing');
+        self::expectExceptionMessageIsOrContains('No group found for non-existing');
 
         Groups::lookUpNormalFor('non-existing');
     }
