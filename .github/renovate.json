@@ -5,6 +5,6 @@
     ],
     "constraints": {
         "php": "8.4.x",
-        "composer": "2.x"
+        "composer": "2.10.2"
     }
 }
