@@ -4,7 +4,7 @@
         "github>WyriHaximus/renovate-config:php-package-dev"
     ],
     "constraints": {
-        "php": "8.4.x",
+        "php": "8.5.9",
         "composer": "2.x"
     }
 }
