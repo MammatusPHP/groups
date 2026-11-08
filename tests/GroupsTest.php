@@ -54,7 +54,7 @@ final class GroupsTest extends TestCase
     public function music(): void
     {
         $container = ContainerFactory::create();
-        $logger = $container->get(TestLogger::class);
+        $logger    = $container->get(TestLogger::class);
         self::assertInstanceOf(TestLogger::class, $logger);
         $groups = new Groups($container);
         self::assertFalse($logger->hasInfoRecords());
@@ -80,21 +80,21 @@ final class GroupsTest extends TestCase
     }
 
     #[Test]
-    public function lookUpNormalForApp(): void
-    {
-        $groups = Groups::lookUpNormalFor('app');
-
-        self::assertCount(1, $groups);
-        self::assertSame(['app'], $groups);
-    }
-
-    #[Test]
     public function lookUpNormalForMusic(): void
     {
         $groups = Groups::lookUpNormalFor('music');
 
         self::assertCount(1, $groups);
-        self::assertSame(['app'], $groups);
+        self::assertSame(['test-group'], $groups);
+    }
+
+    #[Test]
+    public function lookUpNormalForTestGroup(): void
+    {
+        $groups = Groups::lookUpNormalFor('test-group');
+
+        self::assertCount(1, $groups);
+        self::assertSame(['test-group'], $groups);
     }
 
     #[Test]

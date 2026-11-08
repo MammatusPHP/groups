@@ -19,17 +19,33 @@
         "@default": true,
         "FunctionCallRemoval": {
             "ignore": [
-                "WyriHaximus\\TestUtilities\\TestCase::waitUntilTheNextSecond"
+                "WyriHaximus\\TestUtilities\\TestCase::waitUntilTheNextSecond",
+                "Mammatus\\Groups\\Composer\\Plugin::buildLoopUpMap::186",
+                "Mammatus\\Groups\\Composer\\Plugin::buildLoopUpMap::190",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::89",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::90"
             ]
         },
         "MethodCallRemoval": {
             "ignore": [
-                "WyriHaximus\\TestUtilities\\TestCase::tearDown"
+                "WyriHaximus\\TestUtilities\\TestCase::tearDown",
+                "WyriHaximus\\Composer\\GenerativePluginTooling\\Helper\\Remove::fileOnlyIfItExists",
+                "WyriHaximus\\Composer\\GenerativePluginTooling\\Helper\\Remove::directoryContentsOnlyIfItExists",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::66",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::67",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::87"
+            ]
+        },
+        "ReturnRemoval": {
+            "ignore": [
+                "Mammatus\\Groups\\SpawnDaemons::boot::27"
             ]
         },
         "Continue_": {
             "ignore": [
-                "WyriHaximus\\TestUtilities\\TestCase::rmdir"
+                "WyriHaximus\\TestUtilities\\TestCase::rmdir",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::131",
+                "Mammatus\\Groups\\Composer\\Plugin::buildLoopUpMap::161"
             ]
         },
         "TrueValue": {
@@ -56,6 +72,26 @@
         "UnwrapStrToUpper": {
             "ignore": [
                 "WyriHaximus\\TestUtilities\\TestCase::getSysTempDir"
+            ]
+        },
+        "UnwrapArrayFilter": {
+            "ignore": [
+                "Mammatus\\Groups\\Composer\\Plugin::compile::64"
+            ]
+        },
+        "Concat": {
+            "ignore": [
+                "Mammatus\\Groups\\Composer\\Plugin::compile::66",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::67",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::87"
+            ]
+        },
+        "ConcatOperandRemoval": {
+            "ignore": [
+                "Mammatus\\Groups\\Composer\\Plugin::compile::66",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::67",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::87",
+                "Mammatus\\Groups\\Composer\\Plugin::compile::93"
             ]
         }
     },
