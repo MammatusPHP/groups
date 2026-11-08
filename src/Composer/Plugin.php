@@ -65,7 +65,6 @@ final class Plugin implements GenerativePlugin
 
         Remove::fileOnlyIfItExists($rootPath . '/src/Groups.php');
         Remove::fileOnlyIfItExists($rootPath . '/src/SpawnDaemons.php');
-        Remove::directoryContentsOnlyIfItExists($rootPath . '/src/Fallback');
 
         $groups             = [];
         $daemons            = [];
@@ -85,6 +84,8 @@ final class Plugin implements GenerativePlugin
         }
 
         if (! $hasNormalGroup) {
+            Remove::directoryContentsOnlyIfItExists($rootPath . '/src/Fallback');
+
             array_unshift($items, new Group(new GroupAttribute(Type::Normal, 'app')));
             array_unshift($items, new LifeCycleHandler(DealingWIthLife::class));
 
