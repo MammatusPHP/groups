@@ -19,7 +19,7 @@ final class SpawnDaemons implements AsyncListener
     private bool $started = false;
 
     public function __construct(
-        private readonly LifeIsLife $a,
+        private readonly LifeIsLife $b,
     ) {
     }
 
@@ -30,11 +30,11 @@ final class SpawnDaemons implements AsyncListener
         }
 
         $this->started = true;
-        $this->a->start();
+        $this->b->start();
     }
 
     public function shutdown(Shutdown $event): void
     {
-        $this->a->stop();
+        $this->b->stop();
     }
 }
